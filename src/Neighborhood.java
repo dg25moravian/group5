@@ -1,12 +1,24 @@
+/**
+ * This class creates an Neighborhood object that takes a JFrame argument. It creates a GUI Model of a neighborhood
+ * along with labeled Streets.
+ */
+
+
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Line2D;
 import javax.swing.*;
 
-public class GUI {
+public class Neighborhood {
 
-    public static void main(String[] args) {
-        JFrame window = new JFrame();
+    JFrame window;
+
+    /**
+     * Takes a JFrame argument. Creates a GUI Model of the neighborhood as a grid with labeled streets.
+     * @param window
+     */
+    public Neighborhood(JFrame window) {
+        this.window = window;
         window.setTitle("GUI_Truck.exe");
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -26,9 +38,6 @@ public class GUI {
                 truckRoute[i][j].setBorder(BorderFactory.createLineBorder(Color.black, 1));
                 truckRoute[i][j].setPreferredSize(new Dimension(100, 100));
                 compContainer.add(truckRoute[i][j]);
-
-
-
             }
 
         }
@@ -94,8 +103,6 @@ public class GUI {
 
         window.pack();
         window.setVisible(true);
-
-
 
         GridLayout layout = new GridLayout(0, 1);
         JPanel mainPanel = new JPanel(layout);
