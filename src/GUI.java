@@ -19,8 +19,8 @@ public class GUI {
             for (int j = 0; j < 10; j++) {
                 truckRoute[i][j] = new JPanel();
 
-                JLabel label1 = new JLabel("10th Street");
-                truckRoute[i][j].add(label1);
+                //JLabel label1 = new JLabel("10th Street");
+                //truckRoute[i][j].add(label1);
 
                 truckRoute[i][j].setBackground(Color.green);
                 truckRoute[i][j].setBorder(BorderFactory.createLineBorder(Color.black, 1));
@@ -32,8 +32,65 @@ public class GUI {
             }
 
         }
-        //JLabel label1 = new JLabel("10th Street");
-        //window.add(label1);
+        JLabel label1 = new JLabel("1st Street");
+        truckRoute[0][0].add(label1);
+
+        label1 = new JLabel("2nd Street");
+        truckRoute[1][0].add(label1);
+
+        label1 = new JLabel("3rd Street");
+        truckRoute[2][0].add(label1);
+
+        label1 = new JLabel("4th Street");
+        truckRoute[3][0].add(label1);
+
+        label1 = new JLabel("5th Street");
+        truckRoute[4][0].add(label1);
+
+        label1 = new JLabel("6th Street");
+        truckRoute[5][0].add(label1);
+
+        label1 = new JLabel("7th Street");
+        truckRoute[6][0].add(label1);
+
+        label1 = new JLabel("8th Street");
+        truckRoute[7][0].add(label1);
+
+        label1 = new JLabel("9th Street");
+        truckRoute[8][0].add(label1);
+
+        label1 = new JLabel("10th Street");
+        truckRoute[9][0].add(label1);
+
+        label1 = new JLabel("A Street");
+        truckRoute[0][0].add(label1);
+
+        label1 = new JLabel("B Street");
+        truckRoute[0][1].add(label1);
+
+        label1 = new JLabel("C Street");
+        truckRoute[0][2].add(label1);
+
+        label1 = new JLabel("D Street");
+        truckRoute[0][3].add(label1);
+
+        label1 = new JLabel("E Street");
+        truckRoute[0][4].add(label1);
+
+        label1 = new JLabel("F Street");
+        truckRoute[0][5].add(label1);
+
+        label1 = new JLabel("G Street");
+        truckRoute[0][6].add(label1);
+
+        label1 = new JLabel("H Street");
+        truckRoute[0][7].add(label1);
+
+        label1 = new JLabel("I Street");
+        truckRoute[0][8].add(label1);
+
+        label1 = new JLabel("J Street");
+        truckRoute[0][9].add(label1);
 
         window.pack();
         window.setVisible(true);
