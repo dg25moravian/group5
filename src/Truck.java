@@ -15,6 +15,7 @@ public class Truck {
             frame.add(new Circle());
             frame.pack();
             frame.setVisible(true);
+
         }
     }
 
