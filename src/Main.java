@@ -21,6 +21,7 @@ public class Main {
         }
         JFrame window = new JFrame();
         Neighborhood neighborhood = new Neighborhood(window);
+        Truck truck = new Truck();
 
     }
 }

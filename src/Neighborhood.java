@@ -5,8 +5,6 @@
 
 
 import java.awt.*;
-import java.awt.geom.Ellipse2D;
-import java.awt.geom.Line2D;
 import javax.swing.*;
 
 public class Neighborhood {
@@ -41,6 +39,8 @@ public class Neighborhood {
             }
 
         }
+
+
         JLabel label1 = new JLabel("1st Street");
         truckRoute[0][0].add(label1);
 
@@ -112,6 +112,8 @@ public class Neighborhood {
         window.add(mainPanel);
         window.pack();
         window.setVisible(true);
-    }
+
 
     }
+
+}
