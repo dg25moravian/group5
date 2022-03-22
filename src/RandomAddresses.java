@@ -8,6 +8,7 @@
 import java.io.IOException;
 import java.util.Random;
 import java.io.FileWriter;
+import java.util.Random;
 
 
 public class RandomAddresses {
@@ -59,8 +60,15 @@ public class RandomAddresses {
          * @param writer
          * @throws IOException
          */
+
+
+
         private static void writeNumericalStreet(int numStreet, int houseNumber, FileWriter writer) throws IOException {
-                writer.write(houseNumber + " " + (numStreet + 1) + " Street\n");
+                Random hour = new Random();
+                int hourNum = hour.nextInt(16 - 9 + 1) + 9;
+                Random min = new Random();
+                int minNum = min.nextInt(59 - 10 +1) + 10;
+                writer.write(houseNumber + " " + (numStreet + 1) + " Street " + hourNum + ":" + minNum + "\n");
         }
 
         /**
@@ -71,8 +79,12 @@ public class RandomAddresses {
          * @throws IOException
          */
         private static void writeAlphabeticalStreet(int numStreet, int houseNumber, FileWriter writer) throws IOException {
+                Random hour = new Random();
+                int hourNum = hour.nextInt(16 - 9 + 1) + 9;
+                Random min = new Random();
+                int minNum = min.nextInt(59 - 10 + 1) + 10;
                 char streetLetter = (char) ('A' + numStreet);
-                writer.write(houseNumber + " " + streetLetter + " Street\n");
+                writer.write(houseNumber + " " + streetLetter + " Street " + hourNum + ":" + minNum + "\n" );
         }
 
 }
