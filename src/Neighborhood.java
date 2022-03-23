@@ -1,7 +1,8 @@
 /**
  * This class creates an Neighborhood object that takes a JFrame argument. It creates a GUI Model of a neighborhood
  * along with labeled Streets.
- */
+ *//*
+
 
 
 import java.awt.*;
@@ -11,10 +12,12 @@ public class Neighborhood {
 
     JFrame window;
 
-    /**
+    */
+/**
      * Takes a JFrame argument. Creates a GUI Model of the neighborhood as a grid with labeled streets.
      * @param window
-     */
+     *//*
+
     public Neighborhood(JFrame window) {
         this.window = window;
         window.setTitle("GUI_Truck.exe");
@@ -117,3 +120,4 @@ public class Neighborhood {
     }
 
 }
+*/

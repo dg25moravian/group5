@@ -29,8 +29,9 @@ public class Main {
             e.printStackTrace();
         }
         JFrame window = new JFrame();
-        Neighborhood neighborhood = new Neighborhood(window);
-        Truck truck = new Truck();
+
+        Environment environment = new Environment();
+
 
     }
 }
