@@ -10,6 +10,14 @@
 
 public class DistanceFinder
 {
+    double x;
+    double y;
+    public DistanceFinder()
+    {
+
+    }
+
+    /**
     Address add1;
     Address add2;
     double x;
@@ -19,7 +27,8 @@ public class DistanceFinder
         add1 = ad1;
         add2 = ad2;
     }
-    public double calculateDistance()
+     **/
+    public double calculateDistance(Address add1, Address add2)
     {
         if(add1.getStreet() == add2.getStreet())
         {
