@@ -22,16 +22,15 @@ public class Main {
 
 
 
-        RandomAddresses addresses;
-        try {
-            addresses = new RandomAddresses("addresses.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
+       RandomAddresses addresses;
+       try {
+          addresses = new RandomAddresses("addresses.txt");
+       }
+       catch (IOException e) {
+           e.printStackTrace();
         }
-        JFrame window = new JFrame();
-
-        Environment environment = new Environment();
-
+       Truck truck = new Truck();
+       Environment environment = new Environment(truck);
 
     }
 }

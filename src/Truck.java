@@ -1,43 +1,64 @@
-/*
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
+/** This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
+ * that the truck can be moved by adjusting the coordinates to where it needs to go.
+ */
 
-public class Truck {
 
-    public Truck() {
-        {
-            JFrame frame = new JFrame("Truck");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setLayout(new BorderLayout());
-            frame.add(new Circle());
-            frame.pack();
-            frame.setVisible(true);
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
 
-        }
+
+public class Truck extends JPanel {
+
+    private int x;
+    private int y;
+    private int radius = 15;
+
+    public Truck(){
+        this.x = 115;
+        this.y = 150;
+        Truck truck = this;
+        Timer timer = new Timer(2,
+                new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        MoveTruck moveTruck = new MoveTruck(truck);
+                        moveTruck.setNextYCoord(200);
+                        moveTruck.setNextXCoord(200);
+                        while (x != 200 && y != 200) {
+                            moveTruck.moveTruckOnGrid();
+                            paintComponent();
+                        }
+                    }
+                });
+        timer.start();
     }
 
-
-    public class Circle extends JPanel {
-
-        private int x = 0;
-        private int y = 25;
-        private int radius = 15;
-        private int xDelta = 2;
-
-        public Dimension getPreferredSize() {
-            return new Dimension(10, 40);
-        }
-
-        protected void paintComponent(Graphics g) {
-            super.paintComponent(g);
-            g.setColor(Color.RED);
-            g.fillOval(x, y - radius, radius * 2, radius * 2);
-        }
+    public void setX(int x) {
+        this.x = x;
+        repaint();
     }
+
+    public void setY(int y) {
+        this.y = y;
+        repaint();
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    protected void paintComponent(Graphics g) {
+        g.drawOval(x - 10, y - 10, 20, 20);
+        g.setColor(Color.RED);
+        g.fillOval(x - 10, y - 10, 20, 20);
+    }
+
 
 }
-*/
+
+

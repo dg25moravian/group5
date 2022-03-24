@@ -2,7 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Environment extends JFrame {
-    public Environment() {
+
+    Truck truck;
+
+    public Environment(Truck truck) {
 
         setBackground(Color.green);
         setSize(1000, 1000);
@@ -10,12 +13,13 @@ public class Environment extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        this.truck = truck;
+
     }
 
     public void paint(Graphics g) {
-        g.drawOval(150, 150, 25, 25);
-        g.setColor(Color.RED);
-        g.fillOval(150, 150, 25, 25);
+        Truck truck = new Truck();
+        truck.paintComponent(g);
 
         g.setColor(Color.black);
 
@@ -28,7 +32,7 @@ public class Environment extends JFrame {
         g.drawLine(540, 750, 540, 75);
         g.drawLine(625, 750, 625, 75);
         g.drawLine(710, 750, 710, 75);
-        g.drawLine(795, 750, 795, 75);
+        g.drawLine(800, 750, 800, 75);
 
         g.drawLine(800, 75, 25, 75);
         g.drawLine(800, 150, 25, 150);
@@ -60,7 +64,7 @@ public class Environment extends JFrame {
         g.drawString("G street", 540, 100);
         g.drawString("H street", 625, 100);
         g.drawString("I street", 715, 100);
-        g.drawString("J street", 800, 100);
+        g.drawString("J street", 805, 100);
 
 
     }
