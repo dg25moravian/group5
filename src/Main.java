@@ -29,8 +29,8 @@ public class Main {
        catch (IOException e) {
            e.printStackTrace();
         }
-       Truck truck = new Truck();
-       Environment environment = new Environment(truck);
+
+       Environment environment = new Environment();
 
     }
 }

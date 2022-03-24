@@ -3,9 +3,8 @@ import java.awt.*;
 
 public class Environment extends JFrame {
 
-    Truck truck;
 
-    public Environment(Truck truck) {
+    public Environment() {
 
         setBackground(Color.green);
         setSize(1000, 1000);
@@ -13,13 +12,10 @@ public class Environment extends JFrame {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        this.truck = truck;
 
     }
 
     public void paint(Graphics g) {
-        Truck truck = new Truck();
-        truck.paintComponent(g);
 
         g.setColor(Color.black);
 
@@ -66,6 +62,10 @@ public class Environment extends JFrame {
         g.drawString("I street", 715, 100);
         g.drawString("J street", 805, 100);
 
+
+        Truck truck = new Truck(g);
+        truck.paintComponent(g);
+        truck.callMoveTruck();
 
     }
 }
