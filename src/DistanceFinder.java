@@ -1,12 +1,7 @@
 /**
  * Distance finder class
- * Create with 2 addresses and call calculatorDistance() to find the distance between them
- *
- *
+ * Finds distance between 2 give points by calling calculateDistance with the addresses
  */
-
-
-
 
 public class DistanceFinder
 {
@@ -18,15 +13,9 @@ public class DistanceFinder
     }
 
     /**
-    Address add1;
-    Address add2;
-    double x;
-    double y;
-    public DistanceFinder(Address ad1, Address ad2)
-    {
-        add1 = ad1;
-        add2 = ad2;
-    }
+    Calculates the distance between 2 addresses
+     @param     add1, add2, Addresses to find distance between
+     @return    Double c, distance between
      **/
     public double calculateDistance(Address add1, Address add2)
     {
