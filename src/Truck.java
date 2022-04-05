@@ -5,7 +5,7 @@
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.geom.Ellipse2D;
 import java.util.concurrent.TimeUnit;
 
 
@@ -13,7 +13,6 @@ public class Truck extends JPanel {
 
     private int x;
     private int y;
-    private int radius = 15;
     public Graphics g;
     MoveTruck moveTruck;
 
@@ -24,18 +23,19 @@ public class Truck extends JPanel {
     public Truck(Graphics g){
         this.x = 105;
         this.y = 135;
-        this.g = g;
         this.moveTruck = new MoveTruck(this);
+        this.g = g;
     }
 
     public void setX(int x) {
         this.x = x;
-        paintComponent(g);
+        paint(g);
+
     }
 
     public void setY(int y) {
         this.y = y;
-        paintComponent(g);
+        paint(g);
     }
 
     public int getX() {
@@ -47,31 +47,37 @@ public class Truck extends JPanel {
     }
 
     /**
+     * Paints the circle on the GUI to represent the truck.
+     */
+
+    public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2 = (Graphics2D) g;
+        Ellipse2D circle = new Ellipse2D.Double(x, y, 20, 20);
+        g2.fill(circle);
+        // g.drawOval(getX(), getY(), 20, 20);
+        // g.setColor(Color.RED);
+        // g.fillOval(getX(), getY(), 20, 20);
+    }
+
+
+    /**
      * Sends the coordinates of the new address to moveTruck, which updates the coordinates until the Truck is at
      * the new location.
      */
     public void callMoveTruck(){
-        moveTruck.setNextXCoord(785);
-        moveTruck.setNextYCoord(135);
+        moveTruck.setNextXCoord(500);
+        moveTruck.setNextYCoord(200);
         while(getX() != moveTruck.getNextXCoord() || getY() != moveTruck.getNextYCoord()) {
             try {
-                TimeUnit.MILLISECONDS.sleep(500);
+                TimeUnit.MILLISECONDS.sleep(100);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             moveTruck.moveTruckOnGrid();
+            repaint();
         }
 
-    }
-
-    /**
-     * Paints the circle on the GUI to represent the truck.
-     */
-
-    protected void paintComponent(Graphics g) {
-        g.drawOval(getX(), getY(), 20, 20);
-        g.setColor(Color.RED);
-        g.fillOval(getX(), getY(), 20, 20);
     }
 
 }

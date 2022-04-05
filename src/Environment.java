@@ -4,6 +4,7 @@ import java.awt.*;
 public class Environment extends JFrame {
 
 
+
     public Environment() {
 
         setBackground(Color.green);
@@ -64,8 +65,13 @@ public class Environment extends JFrame {
 
 
         Truck truck = new Truck(g);
-        truck.paintComponent(g);
-        truck.callMoveTruck();
+        add(truck);
+        truck.paint(g);
+        truck.moveTruck.moveTruckDown();
+        truck.moveTruck.moveTruckDown();
+        truck.moveTruck.moveTruckDown();
+
+
 
     }
 }
