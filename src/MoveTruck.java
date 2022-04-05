@@ -59,6 +59,23 @@ public class MoveTruck extends JPanel {
      * Updates the coordinates by a value of 5 at a time. This method gets the Truck to the proper X value first
      * before updating the Y value.
      */
+
+    public void moveTruckRight(){
+        truck.setX(truck.getX() + 5);
+    }
+
+    public void moveTruckLeft(){
+        truck.setX(truck.getX() - 5);
+    }
+
+    public void moveTruckUp(){
+        truck.setY(truck.getY() - 5);
+    }
+
+    public void moveTruckDown(){
+        truck.setY(truck.getY() + 5);
+    }
+
     public void moveTruckOnGrid(){
         if (truck.getX() != nextXCoord){
             if (truck.getX() > nextXCoord){
@@ -70,10 +87,10 @@ public class MoveTruck extends JPanel {
             }
         }
         else if (truck.getY() != nextYCoord){
-            if (truck.getY() > nextYCoord){
+            if (truck.getY() < nextYCoord){
                 truck.setY(truck.getY() + 5);
             }
-            if (truck.getY() < nextYCoord){
+            if (truck.getY() > nextYCoord){
                 truck.setY(truck.getY() - 5);
             }
         }
