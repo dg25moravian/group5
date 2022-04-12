@@ -18,8 +18,8 @@ public class MoveTruck extends JPanel {
      */
 
     public MoveTruck(Truck truck){
-        this.nextXCoord = 0;
-        this.nextYCoord = 0;
+        this.nextXCoord = 105;
+        this.nextYCoord = 135;
         this.truck = truck;
     }
 
@@ -56,42 +56,42 @@ public class MoveTruck extends JPanel {
     }
 
     /**
-     * Updates the coordinates by a value of 5 at a time. This method gets the Truck to the proper X value first
+     * Updates the coordinates of the truck object. This method gets the Truck to the proper X value first
      * before updating the Y value.
      */
 
     public void moveTruckRight(){
-        truck.setX(truck.getX() + 5);
+        truck.setX(truck.getX() + 1);
     }
 
     public void moveTruckLeft(){
-        truck.setX(truck.getX() - 5);
+        truck.setX(truck.getX() - 1);
     }
 
     public void moveTruckUp(){
-        truck.setY(truck.getY() - 5);
+        truck.setY(truck.getY() - 1);
     }
 
     public void moveTruckDown(){
-        truck.setY(truck.getY() + 5);
+        truck.setY(truck.getY() + 1);
     }
 
     public void moveTruckOnGrid(){
         if (truck.getX() != nextXCoord){
             if (truck.getX() > nextXCoord){
-                truck.setX(truck.getX() - 5);
+                truck.setX(truck.getX() - 1);
 
             }
             if (truck.getX() < nextXCoord) {
-                truck.setX(truck.getX() + 5);
+                truck.setX(truck.getX() + 1);
             }
         }
         else if (truck.getY() != nextYCoord){
             if (truck.getY() < nextYCoord){
-                truck.setY(truck.getY() + 5);
+                truck.setY(truck.getY() + 1);
             }
             if (truck.getY() > nextYCoord){
-                truck.setY(truck.getY() - 5);
+                truck.setY(truck.getY() - 1);
             }
         }
 
