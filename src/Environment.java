@@ -8,11 +8,19 @@ public class Environment extends JFrame {
     public Environment() {
         this.truck = new Truck();
 
+
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.add(truck);
         this.pack();
         this.setLocationRelativeTo(null);
         this.setVisible(true);
+
+        /**MoveTruck m = new MoveTruck(truck);
+        m.moveTruckRight();
+        m.moveTruckRight();
+       // Add
+       // DistanceRoute r = new DistanceRoute()
+         **/
     }
 
 }

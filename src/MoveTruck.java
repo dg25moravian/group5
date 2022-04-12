@@ -18,8 +18,10 @@ public class MoveTruck extends JPanel {
      */
 
     public MoveTruck(Truck truck){
-        this.nextXCoord = 105;
-        this.nextYCoord = 135;
+
+        Address a = new Address(100,'k');
+        this.nextXCoord = a.getX();
+        this.nextYCoord = a.getY();
         this.truck = truck;
     }
 

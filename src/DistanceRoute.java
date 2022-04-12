@@ -59,12 +59,12 @@ public class DistanceRoute
         Collections.sort(houses, new DistanceCompare(loc));
     }
 
-    /**
+/**
     public void moveNext()
     {
         Address next = houses.get(0);
         System.out.println(next.getStreet() + "  " + loc.getStreet());
-        while(Character.valueoOf(next.getStreet()).compareTo(Character.valueOf(loc.getStreet())) != 0);
+        while(Character.valueOf(next.getStreet()).compareTo(Character.valueOf(loc.getStreet())) != 0);
         {
             System.out.println("one");
             if(next.getStreet() - loc.getStreet() > 0)
@@ -91,6 +91,5 @@ public class DistanceRoute
 
     }
 **/
-
 
 }
