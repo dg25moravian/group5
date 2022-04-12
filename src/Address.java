@@ -31,4 +31,21 @@ public class Address
     {
         return number;
     }
+
+    public int getY()
+    {
+        int res = 0;
+        res = number * 10;
+        //res += 5;
+        return res;
+    }
+    public int getX()
+    {
+        int res = 0;
+        res = Character.valueOf(street) - 97;
+        res = res *100;
+        //res += 5;
+        return res;
+    }
+
 }

@@ -19,14 +19,15 @@ public class Truck extends JPanel implements ActionListener {
     MoveTruck moveTruck = new MoveTruck(this);
     Timer timer;
 
-
+    Address local = new Address(0,'a');
+    DistanceRoute distanceroute = new DistanceRoute(local, this);
 
     /**
      * Constructor. Sets the size of the JPanel and creates a Timer object to delay the truck movement.
      */
     public Truck(){
         this.setPreferredSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
-        timer = new Timer(100, this);
+        timer = new Timer(10, this);
         timer.start();
     }
 
@@ -101,10 +102,8 @@ public class Truck extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < 10; i++) {
-            this.moveTruck.moveTruckDown();
-            repaint();
-        }
+        this.moveTruck.moveTruckOnGrid();
+        repaint();
     }
 
     public void setX(int x){
