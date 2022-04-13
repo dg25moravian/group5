@@ -5,6 +5,7 @@
 import javax.swing.*;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.util.concurrent.TimeUnit;
 
 
 public class MoveTruck extends JPanel {
@@ -82,7 +83,6 @@ public class MoveTruck extends JPanel {
         if (truck.getX() != nextXCoord){
             if (truck.getX() > nextXCoord){
                 truck.setX(truck.getX() - 1);
-
             }
             if (truck.getX() < nextXCoord) {
                 truck.setX(truck.getX() + 1);
@@ -97,5 +97,7 @@ public class MoveTruck extends JPanel {
             }
         }
 
+
+        //System.out.println("Moved to: " + nextXCoord + ", " + nextYCoord);
     }
 }

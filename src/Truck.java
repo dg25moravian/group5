@@ -1,8 +1,7 @@
 /* This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
   that the truck can be moved by adjusting the coordinates to where it needs to go.
  */
-
-
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,6 +17,7 @@ public class Truck extends JPanel implements ActionListener {
     private int y = 0;
     MoveTruck moveTruck = new MoveTruck(this);
     Timer timer;
+    static boolean mutex = false;
 
     Address local = new Address(0,'a');
     DistanceRoute distanceroute = new DistanceRoute(local, this);
@@ -29,6 +29,16 @@ public class Truck extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
         timer = new Timer(10, this);
         timer.start();
+
+
+        Address a1 = new Address(10,'a');
+        Address a2 = new Address(10,'c');
+        Address a3 = new Address(30,'d');
+
+        distanceroute.addHouse(a1);
+        distanceroute.addHouse(a2);
+        distanceroute.addHouse(a3);
+
     }
 
     /**
@@ -102,9 +112,48 @@ public class Truck extends JPanel implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if(!mutex)
+        {
+            mutex = true;
+            Address a = distanceroute.nextHouse();
+            this.moveTruck.setNextXCoord(a.getX());
+            this.moveTruck.setNextYCoord(a.getY());
+        }
+
         this.moveTruck.moveTruckOnGrid();
         repaint();
-    }
+        if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())
+        {
+            mutex = false;
+            System.out.println("Arrived at location");
+        }
+
+
+            /**
+            a = new Address(10, 'a');
+            System.out.println("2");
+            //Address a = distanceroute.nextHouse();
+            this.moveTruck.setNextXCoord(a.getX());
+            this.moveTruck.setNextYCoord(a.getY());
+            //System.out.println(moveTruck.getNextXCoord() + "  "  + moveTruck.getNextYCoord());
+
+            this.moveTruck.moveTruckOnGrid();
+
+            a = new Address(0, 'b');
+            System.out.println("3");
+            //Address a = distanceroute.nextHouse();
+            this.moveTruck.setNextXCoord(a.getX());
+            this.moveTruck.setNextYCoord(a.getY());
+            //System.out.println(moveTruck.getNextXCoord() + "  "  + moveTruck.getNextYCoord());
+
+            this.moveTruck.moveTruckOnGrid();
+            */
+            repaint();
+
+        }
+
+
+
 
     public void setX(int x){
         this.x = x;

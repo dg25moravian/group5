@@ -44,9 +44,31 @@ public class DistanceRoute
         for(Address a : houses)
         {
             System.out.print(a.getNumber() + " " + a.getStreet());
-            System.out.println("");
+            System.out.print("   ");
         }
+        System.out.println("");
 
+    }
+
+    public Address nextHouse()
+    {
+        if(houses.size() != 0)
+        {
+            Address temp = houses.get(0);
+            houses.remove(0);
+            return temp;
+        }
+        return loc;
+
+    }
+
+    public boolean empty()
+    {
+        if(houses.size() == 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
