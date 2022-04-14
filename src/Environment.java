@@ -1,3 +1,7 @@
+/**
+ * Java class that instantiates a truck object, adds houses, and the truck to the GUI.
+ */
+
 import javax.swing.*;
 import java.awt.*;
 

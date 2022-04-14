@@ -1,5 +1,7 @@
-// Java Program to create a popup and display
-// it on a parent frame
+/**
+ * Java class class to create a popup and display
+ * it on a parent frame
+ */
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;

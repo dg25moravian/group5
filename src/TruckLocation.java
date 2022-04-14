@@ -1,3 +1,8 @@
+/**
+ * truck location "GPS" class to give a message to the customer when a location is reached
+ * @param subject
+ */
+
 import javax.swing.JOptionPane;
 public class TruckLocation extends Observer{
     Address address;

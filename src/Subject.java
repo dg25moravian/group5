@@ -1,3 +1,8 @@
+/**
+ * concrete subject class to maintain the state of the object and when a change in the state occurs
+ * it notifies the attached Observers.
+ */
+
 import java.util.ArrayList;
 import java.util.List;
 
