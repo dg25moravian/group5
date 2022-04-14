@@ -1,3 +1,8 @@
+/**
+ * truck location class, updates message for customer when new street is arrived to.
+ * @param subject
+ */
+
 import javax.swing.JOptionPane;
 public class TruckLocation extends Observer{
     Address address;

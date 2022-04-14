@@ -1,5 +1,8 @@
-// Java Program to create a popup and display
-// it on a parent frame
+/**
+ * Subject attaches trucks new location each time
+ * Set state notifies
+ */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
