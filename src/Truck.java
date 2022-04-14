@@ -1,6 +1,7 @@
 /* This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
   that the truck can be moved by adjusting the coordinates to where it needs to go.
  */
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Truck extends JPanel implements ActionListener {
-
+    private boolean distance; //boolean, true if using distance route, false for time route
     final int PANEL_SIZE = 1020;
     private int x = 0;
     private int y = 0;
@@ -21,6 +22,7 @@ public class Truck extends JPanel implements ActionListener {
 
     Address local = new Address(0,'a');
     DistanceRoute distanceroute = new DistanceRoute(local, this);
+    TimeRoute timeroute = new TimeRoute(local, this);
 
     /**
      * Constructor. Sets the size of the JPanel and creates a Timer object to delay the truck movement.
@@ -29,16 +31,30 @@ public class Truck extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
         timer = new Timer(10, this);
         timer.start();
+        distance = false;
 
 
-        Address a1 = new Address(10,'a');
-        Address a2 = new Address(10,'c');
-        Address a3 = new Address(30,'d');
+    }
+    //adds a house to the appropriate object
+    public void addHouse(Address a)
+    {
+        if(distance)
+        {
+            distanceroute.addHouse(a);
+        }
+        if(!distance)
+        {
+            timeroute.addHouse(a);
+        }
 
-        distanceroute.addHouse(a1);
-        distanceroute.addHouse(a2);
-        distanceroute.addHouse(a3);
-
+    }
+    /**
+     * Changes the route to us
+     * @param b:  which raute to use, true for distanec, false for time
+     */
+    public void changeDistance(boolean b)
+    {
+        distance = b;
     }
 
     /**
@@ -110,47 +126,54 @@ public class Truck extends JPanel implements ActionListener {
          */
     }
 
+
+    //This methods runs every timer event
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(!mutex)
+        Address b = new Address();
+        if(distance)
         {
-            mutex = true;
-            Address a = distanceroute.nextHouse();
-            this.moveTruck.setNextXCoord(a.getX());
-            this.moveTruck.setNextYCoord(a.getY());
-        }
+            if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
+            {
+                mutex = true;
+                Address a = distanceroute.nextHouse();
+                b = a;
+                this.moveTruck.setNextXCoord(a.getX());
+                this.moveTruck.setNextYCoord(a.getY());
+            }
 
-        this.moveTruck.moveTruckOnGrid();
-        repaint();
-        if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())
-        {
-            mutex = false;
-            System.out.println("Arrived at location");
-        }
-
-
-            /**
-            a = new Address(10, 'a');
-            System.out.println("2");
-            //Address a = distanceroute.nextHouse();
-            this.moveTruck.setNextXCoord(a.getX());
-            this.moveTruck.setNextYCoord(a.getY());
-            //System.out.println(moveTruck.getNextXCoord() + "  "  + moveTruck.getNextYCoord());
-
-            this.moveTruck.moveTruckOnGrid();
-
-            a = new Address(0, 'b');
-            System.out.println("3");
-            //Address a = distanceroute.nextHouse();
-            this.moveTruck.setNextXCoord(a.getX());
-            this.moveTruck.setNextYCoord(a.getY());
-            //System.out.println(moveTruck.getNextXCoord() + "  "  + moveTruck.getNextYCoord());
-
-            this.moveTruck.moveTruckOnGrid();
-            */
+            this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
             repaint();
 
+            if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
+            {
+                distanceroute.changeLoc(b);
+                mutex = false;
+                System.out.println("Arrived at location");
+            }
+            repaint();
         }
+        if(!distance)
+        {
+            if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
+            {
+                mutex = true;
+                Address a = timeroute.nextHouse();
+                this.moveTruck.setNextXCoord(a.getX());
+                this.moveTruck.setNextYCoord(a.getY());
+            }
+
+            this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
+            repaint();
+
+            if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
+            {
+                mutex = false;
+                System.out.println("Arrived at location");
+            }
+            repaint();
+        }
+    }
 
 
 

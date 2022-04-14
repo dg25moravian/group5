@@ -81,37 +81,4 @@ public class DistanceRoute
         Collections.sort(houses, new DistanceCompare(loc));
     }
 
-/**
-    public void moveNext()
-    {
-        Address next = houses.get(0);
-        System.out.println(next.getStreet() + "  " + loc.getStreet());
-        while(Character.valueOf(next.getStreet()).compareTo(Character.valueOf(loc.getStreet())) != 0);
-        {
-            System.out.println("one");
-            if(next.getStreet() - loc.getStreet() > 0)
-            {
-                truck.moveTruck.moveTruckRight();
-            }
-            if(next.getStreet() - loc.getStreet() < 0)
-            {
-                truck.moveTruck.moveTruckLeft();
-            }
-        }
-        while(next.getNumber()/100 != loc.getNumber()/100)
-        {
-            System.out.println("two");
-            if(next.getNumber()/100 - loc.getNumber()/100 > 0)
-            {
-                truck.moveTruck.moveTruckDown();
-            }
-            if(next.getNumber()/100 - loc.getNumber()/100 < 0)
-            {
-                truck.moveTruck.moveTruckUp();
-            }
-        }
-
-    }
-**/
-
 }

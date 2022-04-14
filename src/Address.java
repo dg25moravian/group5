@@ -31,6 +31,7 @@ public class Address
     {
         return number;
     }
+    public String getTime() {return time;}
 
     public int getY()
     {
