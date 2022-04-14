@@ -1,8 +1,8 @@
 /* This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
   that the truck can be moved by adjusting the coordinates to where it needs to go.
  */
-
-
+import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -12,15 +12,17 @@ import java.util.concurrent.TimeUnit;
 
 
 public class Truck extends JPanel implements ActionListener {
-
+    private boolean distance; //boolean, true if using distance route, false for time route
     final int PANEL_SIZE = 1020;
     private int x = 0;
     private int y = 0;
     MoveTruck moveTruck = new MoveTruck(this);
     Timer timer;
+    static boolean mutex = false;
 
     Address local = new Address(0,'a');
     DistanceRoute distanceroute = new DistanceRoute(local, this);
+    TimeRoute timeroute = new TimeRoute(local, this);
 
     /**
      * Constructor. Sets the size of the JPanel and creates a Timer object to delay the truck movement.
@@ -29,11 +31,35 @@ public class Truck extends JPanel implements ActionListener {
         this.setPreferredSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
         timer = new Timer(10, this);
         timer.start();
+        distance = false;
+
+
+    }
+    //adds a house to the appropriate object
+    public void addHouse(Address a)
+    {
+        if(distance)
+        {
+            distanceroute.addHouse(a);
+        }
+        if(!distance)
+        {
+            timeroute.addHouse(a);
+        }
+
+    }
+    /**
+     * Changes the route to us
+     * @param b:  which raute to use, true for distanec, false for time
+     */
+    public void changeDistance(boolean b)
+    {
+        distance = b;
     }
 
     /**
      * Paints the circle on the GUI to represent the truck.
-     * @param g 
+     * @param g
      */
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -100,11 +126,57 @@ public class Truck extends JPanel implements ActionListener {
          */
     }
 
+
+    //This methods runs every timer event
     @Override
     public void actionPerformed(ActionEvent e) {
-        this.moveTruck.moveTruckOnGrid();
-        repaint();
+        Address b = new Address();
+        if(distance)
+        {
+            if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
+            {
+                mutex = true;
+                Address a = distanceroute.nextHouse();
+                b = a;
+                this.moveTruck.setNextXCoord(a.getX());
+                this.moveTruck.setNextYCoord(a.getY());
+            }
+
+            this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
+            repaint();
+
+            if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
+            {
+                distanceroute.changeLoc(b);
+                mutex = false;
+                System.out.println("Arrived at location");
+            }
+            repaint();
+        }
+        if(!distance)
+        {
+            if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
+            {
+                mutex = true;
+                Address a = timeroute.nextHouse();
+                this.moveTruck.setNextXCoord(a.getX());
+                this.moveTruck.setNextYCoord(a.getY());
+            }
+
+            this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
+            repaint();
+
+            if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
+            {
+                mutex = false;
+                System.out.println("Arrived at location");
+            }
+            repaint();
+        }
     }
+
+
+
 
     public void setX(int x){
         this.x = x;
@@ -123,5 +195,6 @@ public class Truck extends JPanel implements ActionListener {
     }
 
 }
+
 
 

@@ -1,4 +1,3 @@
-
 public class Address
 {
     private int number;
@@ -31,6 +30,7 @@ public class Address
     {
         return number;
     }
+    public String getTime() {return time;}
 
     public int getY()
     {

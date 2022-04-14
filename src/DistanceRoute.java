@@ -44,9 +44,31 @@ public class DistanceRoute
         for(Address a : houses)
         {
             System.out.print(a.getNumber() + " " + a.getStreet());
-            System.out.println("");
+            System.out.print("   ");
         }
+        System.out.println("");
 
+    }
+
+    public Address nextHouse()
+    {
+        if(houses.size() != 0)
+        {
+            Address temp = houses.get(0);
+            houses.remove(0);
+            return temp;
+        }
+        return loc;
+
+    }
+
+    public boolean empty()
+    {
+        if(houses.size() == 0)
+        {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -58,38 +80,5 @@ public class DistanceRoute
         loc = l;
         Collections.sort(houses, new DistanceCompare(loc));
     }
-
-/**
-    public void moveNext()
-    {
-        Address next = houses.get(0);
-        System.out.println(next.getStreet() + "  " + loc.getStreet());
-        while(Character.valueOf(next.getStreet()).compareTo(Character.valueOf(loc.getStreet())) != 0);
-        {
-            System.out.println("one");
-            if(next.getStreet() - loc.getStreet() > 0)
-            {
-                truck.moveTruck.moveTruckRight();
-            }
-            if(next.getStreet() - loc.getStreet() < 0)
-            {
-                truck.moveTruck.moveTruckLeft();
-            }
-        }
-        while(next.getNumber()/100 != loc.getNumber()/100)
-        {
-            System.out.println("two");
-            if(next.getNumber()/100 - loc.getNumber()/100 > 0)
-            {
-                truck.moveTruck.moveTruckDown();
-            }
-            if(next.getNumber()/100 - loc.getNumber()/100 < 0)
-            {
-                truck.moveTruck.moveTruckUp();
-            }
-        }
-
-    }
-**/
 
 }
