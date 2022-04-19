@@ -5,7 +5,7 @@ import java.util.Collections;
  * An arraylist which continues to sort itself in order of closets to furthers from a set destinations
  */
 
-public class DistanceRoute
+public class DistanceRoute implements Strategy
 {
     private ArrayList<Address> houses;  //List of houses
     private Address loc;  //current location

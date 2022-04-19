@@ -9,9 +9,9 @@ public class Environment extends JFrame {
         this.truck = new Truck();
 
 
-        Address a1 = new Address(10,'a',"1:00");
-        Address a2 = new Address(10,'c', "2:00");
-        Address a3 = new Address(40,'c', "1:30");
+        Address a1 = new Address(10,'a',"11:00");
+        Address a2 = new Address(10,'c', "12:00");
+        Address a3 = new Address(30,'c', "11:30");
 
         truck.changeDistance(true);
 

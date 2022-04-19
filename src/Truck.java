@@ -19,10 +19,11 @@ public class Truck extends JPanel implements ActionListener {
     MoveTruck moveTruck = new MoveTruck(this);
     Timer timer;
     static boolean mutex = false;
+    private Strategy strategy;
 
     Address local = new Address(0,'a');
-    DistanceRoute distanceroute = new DistanceRoute(local, this);
-    TimeRoute timeroute = new TimeRoute(local, this);
+    //DistanceRoute distanceroute = new DistanceRoute(local, this);
+    //TimeRoute timeroute = new TimeRoute(local, this);
 
     /**
      * Constructor. Sets the size of the JPanel and creates a Timer object to delay the truck movement.
@@ -32,29 +33,31 @@ public class Truck extends JPanel implements ActionListener {
         timer = new Timer(10, this);
         timer.start();
         distance = false;
+        strategy = new DistanceRoute(local, this);
+
 
 
     }
     //adds a house to the appropriate object
     public void addHouse(Address a)
     {
-        if(distance)
-        {
-            distanceroute.addHouse(a);
-        }
-        if(!distance)
-        {
-            timeroute.addHouse(a);
-        }
+        strategy.addHouse(a);
 
     }
     /**
      * Changes the route to us
-     * @param b:  which raute to use, true for distanec, false for time
+     * @param b:  which route to use, true for distance, false for time
      */
     public void changeDistance(boolean b)
     {
-        distance = b;
+        if(!b)
+        {
+            strategy = new TimeRoute(local, this);
+        }
+        if(b)
+        {
+            strategy = new DistanceRoute(local, this);
+        }
     }
 
     /**
@@ -64,8 +67,9 @@ public class Truck extends JPanel implements ActionListener {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        g2.fillOval(x, y, 15, 15);
+        g2.fillOval(x, y, 10, 10);
         g2.setColor(Color.blue);
+        g2.fillRect(moveTruck.nextXCoord, moveTruck.nextYCoord, 10,10);
 
     }
 
@@ -131,48 +135,27 @@ public class Truck extends JPanel implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         Address b = new Address();
-        if(distance)
-        {
-            if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
+
+        if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
             {
                 mutex = true;
-                Address a = distanceroute.nextHouse();
+                Address a = strategy.nextHouse();
                 b = a;
                 this.moveTruck.setNextXCoord(a.getX());
                 this.moveTruck.setNextYCoord(a.getY());
             }
 
-            this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
-            repaint();
+        this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
+        repaint();
 
-            if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
+        if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
             {
-                distanceroute.changeLoc(b);
+                strategy.changeLoc(b);
                 mutex = false;
                 System.out.println("Arrived at location");
             }
-            repaint();
-        }
-        if(!distance)
-        {
-            if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
-            {
-                mutex = true;
-                Address a = timeroute.nextHouse();
-                this.moveTruck.setNextXCoord(a.getX());
-                this.moveTruck.setNextYCoord(a.getY());
-            }
+        repaint();
 
-            this.moveTruck.moveTruckOnGrid();//it takes a step closer to the location every timer event
-            repaint();
-
-            if(x == moveTruck.getNextXCoord() && y == moveTruck.getNextYCoord())//if the truck has arrived it sets mutex to false
-            {
-                mutex = false;
-                System.out.println("Arrived at location");
-            }
-            repaint();
-        }
     }
 
 
