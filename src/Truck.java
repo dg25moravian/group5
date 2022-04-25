@@ -42,7 +42,6 @@ public class Truck extends JPanel implements ActionListener {
     public void addHouse(Address a)
     {
         strategy.addHouse(a);
-
     }
     /**
      * Changes the route to us
@@ -152,7 +151,7 @@ public class Truck extends JPanel implements ActionListener {
             {
                 strategy.changeLoc(b);
                 mutex = false;
-                System.out.println("Arrived at location");
+                //System.out.println("Arrived at location");
             }
         repaint();
 

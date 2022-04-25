@@ -43,13 +43,8 @@ public class RandomAddresses {
         private static void selectAddress(Random rand, FileWriter writer) throws IOException{
                 int randomVariable = rand.nextInt(2);
                 int numStreet = rand.nextInt(10);
-                int houseNumber = (rand.nextInt(100) + 1) * 10;
-                if (randomVariable == 0) {
-                        writeNumericalStreet(numStreet, houseNumber, writer);
-                }
-                else {
-                        writeAlphabeticalStreet(numStreet, houseNumber, writer);
-                }
+                int houseNumber = (rand.nextInt(10) + 1) * 10;
+                writeAlphabeticalStreet(numStreet, houseNumber, writer);
         }
 
 
@@ -75,7 +70,15 @@ public class RandomAddresses {
                 int hourNum = hour.nextInt(16 - 9 + 1) + 9;
                 Random min = new Random();
                 int minNum = min.nextInt(59 - 10 +1) + 10;
-                writer.write(houseNumber + " " + (numStreet + 1) + " Street " + hourNum + ":" + minNum + " ");
+                if(hourNum < 10)
+                {
+                        writer.write(houseNumber + " " + (numStreet + 1) + " Street 0" + hourNum + ":" + minNum + " ");
+
+                }
+                else
+                {
+                        writer.write(houseNumber + " " + (numStreet + 1) + " Street " + hourNum + ":" + minNum + " ");
+                }
                 if (sandwichNum == 1){
                         if (condimentNum == 1){
                                 sandwich1 = new Cheese(sandwich1);
@@ -172,8 +175,19 @@ public class RandomAddresses {
                 int hourNum = hour.nextInt(16 - 9 + 1) + 9;
                 Random min = new Random();
                 int minNum = min.nextInt(59 - 10 + 1) + 10;
-                char streetLetter = (char) ('A' + numStreet);
-                writer.write(houseNumber + " " + streetLetter + " Street " + hourNum + ":" + minNum + " ");
+                char streetLetter = (char) ('a' + numStreet);
+
+                if(hourNum < 10)
+                {
+                        writer.write(houseNumber + " " + streetLetter + " Street 0" + hourNum + ":" + minNum + " ");
+
+                }
+                else
+                {
+                        writer.write(houseNumber + " " + streetLetter + " Street " + hourNum + ":" + minNum + " ");
+                }
+
+                //writer.write(houseNumber + " " + streetLetter + " Street " + hourNum + ":" + minNum + " ");
                 if (sandwichNum == 1){
                         if (condimentNum == 1){
                                 sandwich1 = new Cheese(sandwich1);

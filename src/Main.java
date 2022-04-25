@@ -14,12 +14,6 @@ public class Main {
 
     public static void main(String[] args){
 
-        //used for testing DistanceFinder
-        //Address a1 = new Address(0,'a');
-        //Address a2 = new Address(20,'d');
-        //DistanceFinder d = new DistanceFinder(a1,a2);
-        //System.out.println(d.calculateDistance());
-
 
 
        RandomAddresses addresses;

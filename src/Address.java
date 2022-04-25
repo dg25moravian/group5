@@ -48,4 +48,9 @@ public class Address
         return res;
     }
 
+    public String toString()
+    {
+        return number + " " + street + " " + time;
+    }
+
 }
