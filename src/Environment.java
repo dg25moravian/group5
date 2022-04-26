@@ -72,6 +72,8 @@ public class Environment extends JFrame {
         this.setLocationRelativeTo(null);
         this.setVisible(true);
 
+
+
         /**MoveTruck m = new MoveTruck(truck);
          m.moveTruckRight();
          m.moveTruckRight();
