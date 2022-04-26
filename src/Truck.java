@@ -1,14 +1,10 @@
 /* This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
   that the truck can be moved by adjusting the coordinates to where it needs to go.
  */
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.geom.Ellipse2D;
-import java.util.concurrent.TimeUnit;
 
 
 public class Truck extends JPanel implements ActionListener {
@@ -20,6 +16,8 @@ public class Truck extends JPanel implements ActionListener {
     Timer timer;
     static boolean mutex = false;
     private Strategy strategy;
+    public double distanceTraveled = 0.0;
+    JLabel distanceLabel;
 
     Address local = new Address(0,'a');
     //DistanceRoute distanceroute = new DistanceRoute(local, this);
@@ -30,19 +28,21 @@ public class Truck extends JPanel implements ActionListener {
      */
     public Truck(){
         this.setPreferredSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
-        timer = new Timer(10, this);
+        timer = new Timer(7, this);
         timer.start();
         distance = false;
         strategy = new DistanceRoute(local, this);
-
-
-
+        this.distanceLabel = new JLabel("Distance Traveled: " + getDistanceTraveled());
+        this.add(distanceLabel);
+        distanceLabel.setLocation(2000, 5);
     }
+
     //adds a house to the appropriate object
     public void addHouse(Address a)
     {
         strategy.addHouse(a);
     }
+
     /**
      * Changes the route to us
      * @param b:  which route to use, true for distance, false for time
@@ -69,7 +69,6 @@ public class Truck extends JPanel implements ActionListener {
         g2.fillOval(x, y, 10, 10);
         g2.setColor(Color.blue);
         g2.fillRect(moveTruck.nextXCoord, moveTruck.nextYCoord, 10,10);
-
     }
 
     /**
@@ -104,6 +103,7 @@ public class Truck extends JPanel implements ActionListener {
         g.drawLine(1005, 805, 5, 805);
         g.drawLine(1005, 905, 5, 905);
         g.drawLine(1005, 1005, 5, 1005);
+
 
         /**
          g.drawString("1st street", 25, 75);
@@ -157,23 +157,52 @@ public class Truck extends JPanel implements ActionListener {
 
     }
 
+    /**
+     * Updates the distance traveled by the truck.
+     */
+    public void updateDistanceTraveled(){
+        this.distanceTraveled += 0.01;
+        distanceLabel.setText("Distance Traveled: " + String.format("%.2f", getDistanceTraveled()));
+    }
 
-
-
+    /**
+     * Sets the x coordinate.
+     * @param x
+     */
     public void setX(int x){
         this.x = x;
     }
 
+    /**
+     * Sets the y coordinate.
+     * @param y
+     */
     public void setY(int y){
         this.y = y;
     }
 
+    /**
+     * Gets the x coordinate.
+     * @return
+     */
     public int getX() {
-        return x;
+        return this.x;
     }
 
+    /**
+     * Gets the y coordinate.
+     * @return
+     */
     public int getY() {
-        return y;
+        return this.y;
+    }
+
+    /**
+     * Gets the distance traveled.
+     * @return
+     */
+    public double getDistanceTraveled(){
+        return this.distanceTraveled;
     }
 
 }

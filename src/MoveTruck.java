@@ -59,44 +59,93 @@ public class MoveTruck extends JPanel {
     }
 
     /**
-     * Updates the coordinates of the truck object. This method gets the Truck to the proper X value first
-     * before updating the Y value.
+     * Moves the truck right one unit.
      */
-
     public void moveTruckRight(){
         truck.setX(truck.getX() + 1);
+        truck.updateDistanceTraveled();
     }
 
+    /**
+     * Moves the truck left one unit.
+     */
     public void moveTruckLeft(){
         truck.setX(truck.getX() - 1);
+        truck.updateDistanceTraveled();
     }
 
+    /**
+     * Moves the truck up one unit.
+     */
     public void moveTruckUp(){
         truck.setY(truck.getY() - 1);
+        truck.updateDistanceTraveled();
     }
 
+    /**
+     * Moves the truck down one unit.
+     */
     public void moveTruckDown(){
         truck.setY(truck.getY() + 1);
+        truck.updateDistanceTraveled();
     }
 
+    /**
+     * Determines if the truck is able to move right or not.
+     */
+    public boolean canMoveRight(){
+        return truck.getX() != 1005 && (truck.getY() == 5 || truck.getY() == 105 || truck.getY() == 205 ||
+                truck.getY() == 305 || truck.getY() == 405 || truck.getY() == 505 || truck.getY() == 605 ||
+                truck.getY() == 705 || truck.getY() == 805 || truck.getY() == 905 || truck.getY() == 1005);
+    }
+
+    /**
+     * Determines if the truck is able to move left or not.
+     */
+    public boolean canMoveLeft(){
+        return truck.getX() != 5 && (truck.getY() == 5 || truck.getY() == 105 || truck.getY() == 205 ||
+                truck.getY() == 305 || truck.getY() == 405 || truck.getY() == 505 || truck.getY() == 605 ||
+                truck.getY() == 705 || truck.getY() == 805 || truck.getY() == 905 || truck.getY() == 1005);
+    }
+
+    /**
+     * Determines if the truck is able to move down or not.
+     */
+    public boolean canMoveDown() {
+        return truck.getY() != 1005 && (truck.getX() == 5 || truck.getX() == 105 || truck.getX() == 205 ||
+                truck.getX() == 305 || truck.getX() == 405 || truck.getX() == 505 || truck.getX() == 605 ||
+                truck.getX() == 705 || truck.getX() == 805 || truck.getX() == 905 || truck.getX() == 1005);
+    }
+
+    /**
+     * Determines if the truck is able to move up or not.
+     */
+    public boolean canMoveUp(){
+        return truck.getY() != 5 && (truck.getX() == 5 || truck.getX() == 105 || truck.getX() == 205 ||
+                truck.getX() == 305 || truck.getX() == 405 || truck.getX() == 505 || truck.getX() == 605 ||
+                truck.getX() == 705 || truck.getX() == 805 || truck.getX() == 905 || truck.getX() == 1005);
+    }
+
+    /**
+     * Moves the truck along the grid to the next destination.
+     */
     public void moveTruckOnGrid(){
         if (truck.getX() != nextXCoord){
             if (truck.getX() > nextXCoord){
-                truck.setX(truck.getX() - 1);
+                moveTruckLeft();
             }
             if (truck.getX() < nextXCoord) {
-                truck.setX(truck.getX() + 1);
+                moveTruckRight();
             }
         }
         else if (truck.getY() != nextYCoord){
             if (truck.getY() < nextYCoord){
-                truck.setY(truck.getY() + 1);
+                moveTruckDown();
             }
             if (truck.getY() > nextYCoord){
-                truck.setY(truck.getY() - 1);
+                moveTruckUp();
             }
         }
-
 
         //System.out.println("Moved to: " + nextXCoord + ", " + nextYCoord);
     }
