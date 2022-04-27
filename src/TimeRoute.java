@@ -10,16 +10,13 @@ public class TimeRoute implements Strategy
     private ArrayList<Address> houses;  //List of houses
     private Address loc;  //current location
     //private MoveTruck truck;
-    private Truck truck;
 
     /**
      * Constructor
      * @param local     The current location of the truck
-     * @param t         The truck to move
      */
-    public TimeRoute(Address local, Truck t)
+    public TimeRoute(Address local)
     {
-        truck = t;
         loc = local;
         houses = new ArrayList<Address>();
     }

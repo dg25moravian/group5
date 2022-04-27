@@ -31,7 +31,7 @@ public class Truck extends JPanel implements ActionListener {
         timer = new Timer(7, this);
         timer.start();
         distance = false;
-        strategy = new DistanceRoute(local, this);
+        strategy = new DistanceRoute(local);
         this.distanceLabel = new JLabel("Distance Traveled: " + getDistanceTraveled());
         this.add(distanceLabel);
         distanceLabel.setLocation(2000, 5);
@@ -51,11 +51,11 @@ public class Truck extends JPanel implements ActionListener {
     {
         if(!b)
         {
-            strategy = new TimeRoute(local, this);
+            strategy = new TimeRoute(local);
         }
         if(b)
         {
-            strategy = new DistanceRoute(local, this);
+            strategy = new DistanceRoute(local);
         }
     }
 

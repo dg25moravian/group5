@@ -10,17 +10,13 @@ public class DistanceRoute implements Strategy
     private ArrayList<Address> houses;  //List of houses
     private Address loc;  //current location
     public DistanceFinder dist;  //distancefinder object
-    //private MoveTruck truck;
-    private Truck truck;
 
     /**
      * Constructor
      * @param local     The current location of the truck
-     * @param t         The truck to move
      */
-    public DistanceRoute(Address local, Truck t)
+    public DistanceRoute(Address local)
     {
-        truck = t;
         loc = local;
         dist = new DistanceFinder();
         houses = new ArrayList<Address>();
@@ -77,8 +73,10 @@ public class DistanceRoute implements Strategy
      */
     public void changeLoc(Address l)
     {
-        loc = l;
-        Collections.sort(houses, new DistanceCompare(loc));
+
+
+        //loc = l;
+        //Collections.sort(houses, new DistanceCompare(loc));
     }
 
 }

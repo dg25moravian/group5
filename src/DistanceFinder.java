@@ -5,8 +5,6 @@
 
 public class DistanceFinder
 {
-    double x;
-    double y;
     public DistanceFinder()
     {
 
@@ -19,22 +17,26 @@ public class DistanceFinder
      **/
     public double calculateDistance(Address add1, Address add2)
     {
-        if(add1.getStreet() == add2.getStreet())
+        if(add1 != null && add2 != null)
         {
-            return Math.abs((double)(add1.getNumber()-add2.getNumber())/10);
+            if(add1.getStreet() == add2.getStreet())
+            {
+                return Math.abs((double)(add1.getNumber()-add2.getNumber())/10);
+            }
+            else if(add1.getNumber() == add2.getNumber())
+            {
+                return Math.abs((double)((int)add1.getStreet()-(int)add2.getStreet()));
+            }
+            else
+            {
+                double a = Math.abs((int)add1.getStreet() - (int)add2.getStreet());
+                double b = Math.abs((add1.getNumber()-add2.getNumber())/10);
+                double c = (a*a) + (b*b);
+                c = Math.sqrt(c);
+                return c;
+            }
         }
-        else if(add1.getNumber() == add2.getNumber())
-        {
-            return Math.abs((double)((int)add1.getStreet()-(int)add2.getStreet()));
-        }
-        else
-        {
-            double a = Math.abs((int)add1.getStreet() - (int)add2.getStreet());
-            double b = Math.abs((add1.getNumber()-add2.getNumber())/10);
-            double c = (a*a) + (b*b);
-            c = Math.sqrt(c);
-            return c;
-        }
+        return 0;
 
 
     }
