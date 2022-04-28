@@ -1,8 +1,8 @@
 /**
- * concrete observer class
+ * Concrete subject class to implement observer pattern
  */
 
-public abstract class Observer {
-    protected Observer observer;
-    public abstract void update();
+public interface Observer
+{
+    public void update(Address address);
 }

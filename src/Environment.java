@@ -6,8 +6,15 @@ public class Environment extends JFrame {
 
     Truck truck;
 
-    public Environment() {
-        this.truck = new Truck();
+    public Environment(MessagePublisher subject){
+        this.truck = new Truck(subject);
+        Address a1 = new Address(10,'a',"11:00");
+        Address a2 = new Address(10,'c', "12:00");
+        Address a3 = new Address(30,'c', "11:30");
+        truck.addHouse(a1);
+        truck.addHouse(a2);
+        truck.addHouse(a3);
+
         String line = "";
         String number = "";
         String time = "";
@@ -51,18 +58,14 @@ public class Environment extends JFrame {
         }
 
 
-        //truck.changeDistance(true);
-
         /**
-        Address a1 = new Address(10,'a',"11:00");
-        Address a2 = new Address(10,'c', "12:00");
-        Address a3 = new Address(30,'c', "11:30");
-
-        truck.changeDistance(true);
-
-        truck.addHouse(a1);
-        truck.addHouse(a2);
-        truck.addHouse(a3);
+         Address a1 = new Address(10,'a',"11:00");
+         Address a2 = new Address(10,'c', "12:00");
+         Address a3 = new Address(30,'c', "11:30");
+         truck.changeDistance(true);
+         truck.addHouse(a1);
+         truck.addHouse(a2);
+         truck.addHouse(a3);
          **/
 
 

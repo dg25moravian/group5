@@ -1,25 +1,23 @@
 /**
- * truck location class, updates message for customer when new street is arrived to.
- * @param subject
+ * Tells customer where the truck is currently at based on orders
  */
+public class TruckLocation implements Observer{
 
-import javax.swing.JOptionPane;
-public class TruckLocation extends Observer{
     Address address;
 
-    public TruckLocation(Subject subject){
-        this.address = new Address();
-
+    public TruckLocation(){
     }
 
     @Override
-    public void update() {
-        JOptionPane.showMessageDialog(null,
-                "Hello customer! The truck is currently on:" + "\n" +
-                        "Street name: " + address.getStreet() +
-                        "\n" + "Street number: " + address.getNumber(),
-                "TITLE",
-                JOptionPane.INFORMATION_MESSAGE);
+//    public void update(char streetName,int streetNumber) {
+    public void update(Address address) {
+        System.out.println("Hello customer! The truck is currently on:" +
+                "\n" + "Street name: " + address.getStreet() +
+                "\n" + "Street number: " + address.getNumber());
+
+
+//    pop p = new pop(streetName,streetNumber);
+        pop p = new pop(address);
 
     }
 }

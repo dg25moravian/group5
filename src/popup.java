@@ -1,34 +1,42 @@
 /**
- * Subject attaches trucks new location each time
- * Set state notifies
+ * Java Program to create a popup and display it on a parent frame
  */
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-class popup extends JFrame {
+class pop extends JFrame {
     // popup
     Popup p;
 
-    // constructor
-    popup() {
+    pop(Address address)
+    {
 
-        Subject subject = new Subject();
-        subject.attach(new TruckLocation(subject));
-        subject.setState(subject.getX());
-
-/*        //Address address = new Address();
-
-        // create a panel
         JPanel p1 = new JPanel();
 
-                "Hello customer! The truck is currently on the street: " + subject.getX() + truck.getNextYCoord(),
-                "Customer Truck Tracker",
-                JOptionPane.PLAIN_MESSAGE);
-    }*/
+        Address serviceCenter = new Address();
+
+        if (Character.toString(address.getStreet()).equals(Character.toString(serviceCenter.getStreet())) && address.getNumber() == serviceCenter.getNumber())
+        {
+            JOptionPane.showMessageDialog(p1,
+                    "The truck has currently completed deliveries.",
+                    "Customer Truck Tracker",
+                    JOptionPane.PLAIN_MESSAGE);
+
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(p1,
+                    "Hello customer! The truck is currently on:\r\nStreet name: " + address.getStreet() + "\r\nStreet number:" + address.getNumber(),
+                    "Customer Truck Tracker",
+                    JOptionPane.PLAIN_MESSAGE);
+
+        }
+
 
     }
-    public void actionPerformed (ActionEvent e)
+
+
+    public void actionPerformed(ActionEvent e)
     {
         p.show();
     }
