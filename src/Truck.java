@@ -1,7 +1,8 @@
-/**
- *  This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
- *  that the truck can be moved by adjusting the coordinates to where it needs to go.
+/*
+   This class creates a Truck object, which is a circle on the Neighborhood GUI. It holds x and y coordinates so
+   that the truck can be moved by adjusting the coordinates to where it needs to go.
  */
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,6 @@ public class Truck extends JPanel implements ActionListener {
     MoveTruck moveTruck = new MoveTruck(this);
     MessagePublisher subject;
 
-
     private char street;
     private int number;
 
@@ -30,15 +30,13 @@ public class Truck extends JPanel implements ActionListener {
     JLabel distanceLabel;
 
     Address local = new Address(0,'a');
-    //DistanceRoute distanceroute = new DistanceRoute(local, this);
-    //TimeRoute timeroute = new TimeRoute(local, this);
 
     /**
      * Constructor. Sets the size of the JPanel and creates a Timer object to delay the truck movement.
      */
-    public Truck( MessagePublisher subject){
-        this.subject =subject;
-        this.setPreferredSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
+    public Truck(MessagePublisher subject){
+        this.subject = subject;
+        this.setSize(new Dimension(PANEL_SIZE, PANEL_SIZE));
         timer = new Timer(7, this);
         timer.start();
         distance = false;
@@ -54,8 +52,9 @@ public class Truck extends JPanel implements ActionListener {
         strategy.addHouse(a);
 
     }
+
     /**
-     * Changes the route to us
+     * Changes the route to use
      * @param b:  which route to use, true for distance, false for time
      */
     public void changeDistance(boolean b)
@@ -80,6 +79,8 @@ public class Truck extends JPanel implements ActionListener {
         g2.fillOval(x, y, 10, 10);
         g2.setColor(Color.blue);
         g2.fillRect(moveTruck.nextXCoord, moveTruck.nextYCoord, 10,10);
+        g2.setColor(Color.RED);
+        g2.fillRect(0, 0, 10, 10);
 
     }
 
@@ -115,29 +116,6 @@ public class Truck extends JPanel implements ActionListener {
         g.drawLine(1005, 805, 5, 805);
         g.drawLine(1005, 905, 5, 905);
         g.drawLine(1005, 1005, 5, 1005);
-
-        /**
-         g.drawString("1st street", 25, 75);
-         g.drawString("2nd street", 25, 150);
-         g.drawString("3rd street", 25, 225);
-         g.drawString("4th street", 25, 300);
-         g.drawString("5th street", 25, 375);
-         g.drawString("6th street", 25, 450);
-         g.drawString("7th street", 25, 525);
-         g.drawString("8th street", 25, 600);
-         g.drawString("9th street", 25, 675);
-         g.drawString("10th street", 25, 750);
-         g.drawString("A street", 30, 100);
-         g.drawString("B street", 120, 100);
-         g.drawString("C street", 200, 100);
-         g.drawString("D street", 290, 100);
-         g.drawString("E street", 375, 100);
-         g.drawString("F street", 460, 100);
-         g.drawString("G street", 540, 100);
-         g.drawString("H street", 625, 100);
-         g.drawString("I street", 715, 100);
-         g.drawString("J street", 805, 100);
-         */
     }
 
 
@@ -146,7 +124,7 @@ public class Truck extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         Address b = new Address();
 
-        if(!mutex) //If this variable is false then the truck is ready to recieve its new place to go
+        if(!mutex) //If this variable is false then the truck is ready to receive its new place to go
         {
             mutex = true;
             Address a = strategy.nextHouse();
@@ -168,9 +146,10 @@ public class Truck extends JPanel implements ActionListener {
 
 //truck back at home so stop timer
 
-            Address serviceCenter = new Address();
+            Address serviceCenter = new Address(0, 'a');
 
-            if (Character.toString(saveAddress.getStreet()).equals(Character.toString(serviceCenter.getStreet())) && saveAddress.getNumber() == serviceCenter.getNumber())
+            if (Character.toString(saveAddress.getStreet()).equals(Character.toString(serviceCenter.getStreet())) &&
+                    saveAddress.getNumber() == serviceCenter.getNumber())
 
 //           if(x==0 && y==10)
             {

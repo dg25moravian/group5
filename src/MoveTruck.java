@@ -3,9 +3,6 @@
  */
 
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.concurrent.TimeUnit;
 
 
 public class MoveTruck extends JPanel {

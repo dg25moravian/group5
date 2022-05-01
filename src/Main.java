@@ -21,15 +21,7 @@ public class Main {
             e.printStackTrace();
         }
 
-        //Environment environment = new Environment();
-
-        MessagePublisher subject = new  MessagePublisher();
-        Environment environment = new Environment(subject);
-
-        TruckLocation tl =new TruckLocation();
-
-        subject.attach(tl);
-        //popup p = new popup();
-
+        SelectGUI selectGUI = new SelectGUI();
     }
+
 }
